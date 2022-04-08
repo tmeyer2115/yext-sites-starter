@@ -2,9 +2,29 @@ import { jsx as _jsx } from 'react/jsx-runtime';
 import ReactDOM from 'react-dom';
 import { createElement } from 'react';
 
-export const App = ({ page }) => {
-  return createElement(page?.component, page?.props);
+import i18n from 'i18next';
+import { I18nextProvider } from 'react-i18next';
+
+export const App = ({ page, translations, locale }) => {
+  const i18nOptions = {
+    fallbackLng: 'en',
+    lng: locale,
+    resources: {
+      [locale]: translations,
+    },
+    interpolation: {
+      escapeValue: false // react already safes from xss
+    },
+    debug: false,
+  }
+  i18n.init(i18nOptions);
+  return createElement(
+    I18nextProvider,
+    { i18n },
+    createElement(page?.component, page?.props)
+  );
 };
+
 const hydrate = async () => {
   // Can't use string interpolation here so src/templates is hardcoded
   const templates = import.meta.glob('/src/templates/*.(jsx|tsx)');
@@ -29,6 +49,8 @@ const hydrate = async () => {
         path: window.location.pathname,
         component: component,
       },
+      translations: window._RSS_I18N_,
+      locale: window._RSS_LOCALE_,
     }),
     document.getElementById('root'),
   );
