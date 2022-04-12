@@ -13,7 +13,7 @@ export const App = ({ page, translations, locale }) => {
       [locale]: translations,
     },
     interpolation: {
-      escapeValue: false // react already safes from xss
+      escapeValue: false // react is already safe from xss
     },
     debug: false,
   }

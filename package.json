@@ -16,7 +16,7 @@
     "node": ">=17"
   },
   "dependencies": {
-    "@yext/yext-sites-scripts": "github:mkilpatrick/yext-sites-scripts#aliang-multilang",
+    "@yext/yext-sites-scripts": "mkilpatrick/yext-sites-scripts#95cd87700ab75c5c6895bc152ceb79083e2d6e7a",
     "i18next": "^21.6.14",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
