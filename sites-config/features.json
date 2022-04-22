@@ -9,6 +9,14 @@
       }
     },
     {
+      "name": "static",
+      "streamId": "",
+      "templateType": "JS",
+      "staticPage": {
+        "plugin": {}
+      }
+    },
+    {
       "name": "Product Test",
       "streamId": "products-test",
       "templateType": "JS",

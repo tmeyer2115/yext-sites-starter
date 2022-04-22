@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { renderToString } from 'react-dom/server';
 import { reactWrapper } from '../wrapper';
 import fetch from "cross-fetch";
+import { AnswersHeadlessProvider } from '@yext/answers-headless-react';
+import { SearchBar, UniversalResults } from '@yext/answers-react-components';
 
 export const config = {
   name: 'static',
@@ -9,6 +11,13 @@ export const config = {
 
 export const getPath = (data: any) => {
   return `static/${Math.random().toString()}`;
+};
+
+const answersConfig = {
+  apiKey: '2d8c550071a64ea23e263118a2b0680b',
+  experienceKey: 'slanswers',
+  locale: 'en',
+  experienceVersion: 'PRODUCTION'
 };
 
 export const getStaticProps: any = async () => {
@@ -27,11 +36,11 @@ const Static = ({ data }: { data: any }) => {
   const [num, setNum] = useState<number>(0);
 
   return (
-    <>
-      <div>Hello from {name}</div>
-      <button onClick={() => setNum(num + 1)}>Click me</button>
-      Num: {num}
-    </>
+    <AnswersHeadlessProvider {...answersConfig}>
+      <SearchBar />
+      <UniversalResults verticalConfigMap={{}}
+      />
+    </AnswersHeadlessProvider>
   );
 };
 
