@@ -3,14 +3,14 @@ import { renderToString } from 'react-dom/server';
 import { reactWrapper } from '../wrapper';
 import fetch from "cross-fetch";
 import { AnswersHeadlessProvider } from '@yext/answers-headless-react';
-import { SearchBar, UniversalResults } from '@yext/answers-react-components';
+import { SearchBar, UniversalResults, DirectAnswer, ResultsCount, SpellCheck, LocationBias } from '@yext/answers-react-components';
 
 export const config = {
-  name: 'static',
+  name: 'universal',
 };
 
 export const getPath = (data: any) => {
-  return `static/${Math.random().toString()}`;
+  return `universal/${Math.random().toString()}`;
 };
 
 const answersConfig = {
@@ -28,7 +28,7 @@ export const getStaticProps: any = async () => {
   return pokemon;
 };
 
-const Static = ({ data }: { data: any }) => {
+const Universal = ({ data }: { data: any }) => {
   const { document } = data;
   const { streamOutput } = document;
   const { name } = streamOutput;
@@ -38,13 +38,16 @@ const Static = ({ data }: { data: any }) => {
   return (
     <AnswersHeadlessProvider {...answersConfig}>
       <SearchBar />
-      <UniversalResults verticalConfigMap={{}}
-      />
+      <DirectAnswer />
+      <SpellCheck />
+      <ResultsCount />
+      <UniversalResults verticalConfigMap={{}}/>
+      <LocationBias />
     </AnswersHeadlessProvider>
   );
 };
 
 export const render = (data: any) =>
-  reactWrapper(data, 'static', 'static.tsx', renderToString(<Static data={data} />), true);
+  reactWrapper(data, 'universal', 'universal.tsx', renderToString(<Universal data={data} />), true);
 
-export default Static;
+export default Universal;

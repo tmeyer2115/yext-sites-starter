@@ -9,18 +9,18 @@
       }
     },
     {
-      "name": "static",
-      "streamId": "",
-      "templateType": "JS",
-      "staticPage": {
-        "plugin": {}
-      }
-    },
-    {
       "name": "Product Test",
       "streamId": "products-test",
       "templateType": "JS",
       "entityPageSet": {
+        "plugin": {}
+      }
+    },
+    {
+      "name": "universal",
+      "streamId": "",
+      "templateType": "JS",
+      "staticPage": {
         "plugin": {}
       }
     }
