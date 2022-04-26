@@ -14,8 +14,8 @@ export const getPath = (data: any) => {
 };
 
 const answersConfig = {
-  apiKey: '2d8c550071a64ea23e263118a2b0680b',
-  experienceKey: 'slanswers',
+  apiKey: '3517add824e992916861b76e456724d9',
+  experienceKey: 'answers-js-docs',
   locale: 'en',
   experienceVersion: 'PRODUCTION'
 };
@@ -29,12 +29,6 @@ export const getStaticProps: any = async () => {
 };
 
 const Universal = ({ data }: { data: any }) => {
-  const { document } = data;
-  const { streamOutput } = document;
-  const { name } = streamOutput;
-
-  const [num, setNum] = useState<number>(0);
-
   return (
     <AnswersHeadlessProvider {...answersConfig}>
       <SearchBar />
