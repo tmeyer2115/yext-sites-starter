@@ -2,7 +2,7 @@ import { renderToString } from 'react-dom/server';
 import { reactWrapper } from '../wrapper';
 import fetch from "cross-fetch";
 import { AnswersHeadlessProvider, HeadlessConfig } from '@yext/answers-headless-react';
-import { SearchBar, StandardCard, DirectAnswer, ResultsCount, SpellCheck, LocationBias, VerticalResults, AppliedFilters } from '@yext/answers-react-components';
+import { SearchBar, StandardCard, DirectAnswer, ResultsCount, SpellCheck, LocationBias, VerticalResults, AppliedFilters, AlternativeVerticals, FilterSearch } from '@yext/answers-react-components';
 import { Facets } from '../components/facets';
 import { StaticFilters } from '../components/staticfilters';
 
@@ -36,6 +36,7 @@ const Vertical = ({ data }: { data: any }) => {
       <SearchBar />
       <div className='flex'>
         <div className='flex-grow'>
+          <FilterSearch searchFields={[{fieldApiName: 'services', entityType: 'location'}]}/>
           <StaticFilters />
           <Facets />
         </div>
@@ -46,6 +47,12 @@ const Vertical = ({ data }: { data: any }) => {
             <ResultsCount />
             <AppliedFilters />
           </div>
+          <AlternativeVerticals currentVerticalLabel='Locations' verticalConfigMap={{ 
+            people: { label: 'People' },
+            faqs: { label: 'FAQs' },
+            events: { label: 'Events' },
+            jobs: { label: 'Jobs' }
+          }}/>
           <VerticalResults CardComponent={StandardCard}/>
         </div>
       </div>
