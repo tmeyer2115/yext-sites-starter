@@ -4,6 +4,7 @@ import { reactWrapper } from '../wrapper';
 import fetch from "cross-fetch";
 import { AnswersHeadlessProvider } from '@yext/answers-headless-react';
 import { SearchBar, UniversalResults, DirectAnswer, ResultsCount, SpellCheck, LocationBias } from '@yext/answers-react-components';
+import '../answers-react-components.css';
 
 export const config = {
   name: 'universal',
